@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Announcement Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Announcement Tracker</h1>
+
+        <!-- Dropdown for stock selection -->
+        <label for="stockSelect">Select Stocks:</label>
+        <div class="dropdown">
+            <button class="dropdown-btn">Select Stocks</button>
+            <div class="dropdown-content" id="stockDropdown">
+                <!-- Stock options will be populated here -->
+            </div>
+        </div>
+
+        <button id="getDetailsBtn">Get Announcements</button>
+
+        <!-- Display announcements here -->
+        <div id="announcements"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
