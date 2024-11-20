@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Title Bar -->
+  <header class="bg-green-200 px-4 py-2 flex justify-between items-center border-b border-yellow-500">
+    <h1 class="text-xl font-bold">Title Bar</h1>
+    <button class="bg-white border border-gray-300 rounded px-4 py-1 hover:bg-gray-200">Logout</button>
+  </header>
+
+  <main class="p-4">
+    <!-- Outer Container -->
+    <div class="border border-yellow-500 bg-pink-100 p-4">
+      <div class="grid grid-cols-3 gap-4">
+        <!-- Left Sidebar -->
+        <div class="col-span-1 bg-purple-100 border border-purple-500">
+          <!-- Template 1 -->
+          <div class="bg-purple-600 text-white font-bold p-4 border-b border-black">
+            Template 1
+          </div>
+          <!-- Template 2 -->
+          <div class="bg-purple-600 text-white font-bold p-4 border-b border-black">
+            Template 2
+          </div>
+          <!-- Issues -->
+          <div class="p-4">
+            <div class="bg-green-500 text-white font-bold p-4 mb-2 border border-black">
+              Rights Issue <br /> xx-xx-xxxx
+            </div>
+            <div class="bg-pink-500 text-white font-bold p-4 mb-2 border border-black">
+              Debenture Issue <br /> xx-xx-xxxx
+            </div>
+            <div class="bg-pink-500 text-white font-bold p-4 border border-black">
+              Annual Report Issue <br /> xx-xx-xxxx
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-span-2 bg-blue-100 p-4 border border-blue-500">
+          <h2 class="text-xl font-bold">Rights Issue</h2>
+          <p class="mt-4"><strong>Issue Date:</strong> xx-xx-xxxx</p>
+          <p><strong>Type:</strong> --------</p>
+          <p class="mt-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

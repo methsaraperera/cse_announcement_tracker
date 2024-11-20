@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Announcement Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles2.css">
+
+    <script>
+        // Custom configuration to mimic shadcn/ui styling
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#2563eb',
+                            foreground: '#ffffff'
+                        },
+                        secondary: {
+                            DEFAULT: '#f3f4f6',
+                            foreground: '#111827'
+                        },
+                        muted: {
+                            DEFAULT: '#f9fafb',
+                            foreground: '#6b7280'
+                        },
+                        destructive: {
+                            DEFAULT: '#ef4444',
+                            foreground: '#ffffff'
+                        },
+                        white: {
+                            DEFAULT: '#ffffff'
+                        }
+                    },
+                    borderRadius: {
+                        lg: '0.5rem',
+                        md: '0.375rem',
+                        sm: '0.25rem'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex flex-col h-screen">
+        <!-- Menu Bar (Unchanged) -->
+        <header class="bg-primary p-4 shadow-md">
+            <div class="container mx-auto flex justify-between items-center">
+                <a href="#" class="text-primary-foreground text-xl font-bold">
+                    Stock Announcement Tracker
+                </a>
+                <div class="flex items-center space-x-4">
+                    <span class="text-primary-foreground">John Doe</span>
+                    <button class="bg-destructive text-destructive-foreground px-4 py-2 rounded-md hover:bg-red-600 transition-colors">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tool Bar -->
+        <div class="bg-white p-4 shadow-sm">
+            <div class="container mx-auto flex flex-wrap items-center gap-4">
+                <!-- Company Dropdown -->
+                <!--<div class="relative">
+                    <select id="stockDropdown" class="appearance-none w-60 p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option value="">Select Company</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                        </svg>
+                    </div>
+                </div>-->
+
+                <div class="relative">
+                    <button id="stockDropdownBtn" class="appearance-none w-80 p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-left">
+                        Select Companies
+                    </button>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                        </svg>
+                    </div>
+                    <div id="stockDropdown" class="absolute left-0 bg-white border rounded-lg shadow-sm border-gray-300 mt-1 hidden z-10 flex-wrap p-3 min-w-max w-auto max-h-60 overflow-y-auto custom-scrollbar">
+                        <!-- Checkboxes will be dynamically added here -->
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <button id="announcementTypeSelectBtn" class="appearance-none w-72 p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-left">
+                        Select Announcement Category
+                    </button>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                        </svg>
+                    </div>
+                    <div id="categoryDropdown" class="absolute left-0 bg-white border rounded-lg shadow-sm border-gray-300 mt-1 hidden z-10 flex-wrap p-3 w-full max-h-60 overflow-y-auto custom-scrollbar">
+                        <!-- Checkboxes will be dynamically added here -->
+                    </div>
+                </div>
+
+                
+
+                
+
+                <!-- Announcement Type Dropdown -->
+                <!--<div class="relative">
+                    <select id="announcementTypeSelect" class="appearance-none w-48 p-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option value="">Announcement Type</option>
+                        <option value="FINANCIAL">Financial</option>
+                        <option value="CORPORATE_ACTION">Corporate Action</option>
+                        <option value="GENERAL">General</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                        </svg>
+                    </div>
+                </div>-->
+
+                <!-- Date Inputs -->
+                <input type="date" id="startDate" class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                <input type="date" id="endDate" class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+
+                <!-- Get Announcements Button -->
+                <button id="getAnnouncementsBtn" class="bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                    Get Announcements
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter Bar (Unchanged) -->
+        <div class="bg-muted p-4">
+            <div class="container mx-auto">
+                <div class="flex items-center space-x-2">
+                    <span class="font-semibold">Selected Filters:</span>
+                    <div id="selectedFilters" class="flex space-x-2">
+                        <!-- Filters will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-grow overflow-hidden">
+            <div class="container mx-auto p-2 h-full">
+                <div class="flex h-full space-x-1">
+                    <!-- Section 1: Templates -->
+                    <div class="w-1/6 bg-white border rounded-lg shadow-sm overflow-y-auto custom-scrollbar">
+                        <div class="p-2 space-y-2">
+                            <button class="w-full text-left p-2 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors template-btn" data-template="Live Data">
+                                <div>Live Data</div>
+                                <div class="text-xs text-gray-500">Real-time Announcements</div>
+                            </button>
+                            <button class="w-full text-left p-2 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors template-btn" data-template="Sub-Template 1">
+                                <div>Sub-Template 1</div>
+                                <div class="text-xs text-gray-500">No Announcements</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Announcements -->
+                    <div class="w-2/6 bg-white border rounded-lg shadow-sm overflow-y-auto custom-scrollbar">
+                        <div id="announcements" class="p-2 space-y-2">
+                        <!-- Announcements will be dynamically populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Full Announcement -->
+                    <div id="announcementDetails" class="w-8/12 bg-white border rounded-lg shadow-sm overflow-y-auto custom-scrollbar p-4">
+                        <h2 class="text-2xl font-bold mb-4">Full Announcement Details</h2>
+                        <div class="prose">
+                            <p>Select an announcement to view details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
